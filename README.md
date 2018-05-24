@@ -13,5 +13,5 @@ This code is written in Python 2.7 & can be downloaded [here](https://www.python
 6. Click on a movie to load & enjoy its trailer!
 
 ##Screenshot of Application
-![Application Screenshot](images/ApplicationScreenshot.png)
+![Application Screenshot](images/ApplicationScreenshot1.png)
 
