@@ -1,10 +1,4 @@
-import webbrowser
-import os
-import re
 
-
-# Styles and scripting for the page
-main_page_head = '''
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,11 +78,7 @@ main_page_head = '''
         });
     </script>
 </head>
-'''
 
-
-# The main page layout and title bar
-main_page_content = '''
   <body>
     <!-- Trailer Video Modal -->
     <div class="modal" id="trailer">
@@ -114,55 +104,67 @@ main_page_content = '''
       </div>
     </div>
     <div class="container">
-      {movie_tiles}
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="1g3_CFmnU7k" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg" width="220" height="342">
+    <h4>Star Wars: A New Hope</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="w8JNjmK5lfk" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/9/9e/Serenity_One_Sheet.jpg" width="220" height="342">
+    <h4>Serenity</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="VyHV0BRtdxo" data-toggle="modal" data-target="#trailer">
+    <img src="https://vignette.wikia.nocookie.net/harrypotter/images/6/64/Harry-Potter-and-the-Sorcerers-Stone-2001-Hindi-Dubbed-Movie-Watch-Online.jpg/revision/latest?cb=20130803161550" width="220" height="342">
+    <h4>Harry Potter & The Sorcerer's Stone</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="4S9a5V9ODuY" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/4/42/HungerGamesPoster.jpg" width="220" height="342">
+    <h4>Hunger Games</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="VnLnkwpIBpA" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/f/f9/TheAvengers2012Poster.jpg" width="220" height="342">
+    <h4>The Avengers</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="Xithigfg7dA" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/4/46/Deadpool_poster.jpg" width="220" height="342">
+    <h4>Deadpool</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="SApIKVq1iJQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/a/aa/13_Going_on_30_film_poster.png" width="220" height="342">
+    <h4>13 Going On 30</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="6ZfuNTqbHE8" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Avengers_Infinity_War_poster.jpg" width="220" height="342">
+    <h4>The Avengers: Infinity War</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="aStYWD25fAQ" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/9/9d/The_Lord_of_the_Rings_The_Fellowship_of_the_Ring_%282001%29_theatrical_poster.jpg" width="220" height="342">
+    <h4>Lord of the Rings: Fellowship of the Ring</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ue80QwXMRHg" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg" width="220" height="342">
+    <h4>Thor: Ragnarok</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ImMGNQ2OEjo" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/6/68/Ocean%27s_Eleven_2001_Poster.jpg" width="220" height="342">
+    <h4>Ocean's 11</h4>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="BDi5zH18vxU" data-toggle="modal" data-target="#trailer">
+    <img src="https://upload.wikimedia.org/wikipedia/en/6/60/Theholidayposter.jpg" width="220" height="342">
+    <h4>The Holiday</h4>
+</div>
+
     </div>
   </body>
 </html>
-'''
-
-
-# A single movie entry html template
-movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
-    <h4>{movie_title}</h4>
-</div>
-'''
-
-
-def create_movie_tiles_content(movies):
-    # The HTML content for this section of the page
-    content = ''
-    for movie in movies:
-        # Extract the youtube ID from the url
-        youtube_id_match = re.search(
-            r'(?<=v=)[^&#]+', movie.trailer_youtube_url)
-        youtube_id_match = youtube_id_match or re.search(
-            r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
-        trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
-                              else None)
-
-        # Append the tile for the movie with its content filled in
-        content += movie_tile_content.format(
-            movie_title=movie.title,
-            poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
-        )
-    return content
-
-
-def open_movies_page(movies):
-    # Create or overwrite the output file
-    output_file = open('fresh_tomatoes.html', 'w')
-
-    # Replace the movie tiles placeholder generated content
-    rendered_content = main_page_content.format(
-        movie_tiles=create_movie_tiles_content(movies))
-
-    # Output the file
-    output_file.write(main_page_head + rendered_content)
-    output_file.close()
-
-    # open the output file in the browser (in a new tab, if possible)
-    url = os.path.abspath(output_file.name)
-    webbrowser.open('file://' + url, new=2)
