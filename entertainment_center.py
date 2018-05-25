@@ -1,12 +1,13 @@
 import fresh_tomatoes
 import media
 
-#instances of movies created to be used by fresh_tomatoes file
+# instances of movies created to be used by fresh_tomatoes file
 
 star_wars_4 = media.Movie("Star Wars: A New Hope",
-                          "A young man saves the galaxy against the evil Empire.",
+                          "A young man saves the galaxy against the evil "
+                          "Empire.",
                           "https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg",  # NOQA
-                          "https://www.youtube.com/watch?v=1g3_CFmnU7k")  
+                          "https://www.youtube.com/watch?v=1g3_CFmnU7k")
 
 harry_potter_1 = media.Movie("Harry Potter & The Sorcerer's Stone",
                             " A boy wizard battles for his life with the Dark "
@@ -16,17 +17,17 @@ harry_potter_1 = media.Movie("Harry Potter & The Sorcerer's Stone",
 
 hunger_games = media.Movie("Hunger Games",
                            "Teens fight to the death.",
-                           "https://upload.wikimedia.org/wikipedia/en/4/42/HungerGamesPoster.jpg", # NOQA
+                           "https://upload.wikimedia.org/wikipedia/en/4/42/HungerGamesPoster.jpg",  # NOQA
                            "https://www.youtube.com/watch?v=4S9a5V9ODuY")
 
 avengers = media.Movie("The Avengers",
                        "Superheroes save the world from aliens.",
-                       "https://upload.wikimedia.org/wikipedia/en/f/f9/TheAvengers2012Poster.jpg", # NOQA
+                       "https://upload.wikimedia.org/wikipedia/en/f/f9/TheAvengers2012Poster.jpg",  # NOQA
                        "https://www.youtube.com/watch?v=VnLnkwpIBpA")
 
 deadpool = media.Movie("Deadpool",
                        "Ugly snarky antihero saves his girlfriend.",
-                       "https://upload.wikimedia.org/wikipedia/en/4/46/Deadpool_poster.jpg", # NOQA
+                       "https://upload.wikimedia.org/wikipedia/en/4/46/Deadpool_poster.jpg",  # NOQA
                        "https://www.youtube.com/watch?v=Xithigfg7dA")
 
 thirteen_thirty = media.Movie("13 Going On 30",
@@ -51,8 +52,9 @@ serenity = media.Movie("Serenity",
                        "https://www.youtube.com/watch?v=w8JNjmK5lfk")
 
 thor_ragnarok = media.Movie("Thor: Ragnarok",
-                            "Thor battles his sister Hella for control of Asgard.",
-                            "https://upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg",  #NOQA
+                            "Thor battles his sister Hella for control of "
+                            "Asgard.",
+                            "https://upload.wikimedia.org/wikipedia/en/7/7d/Thor_Ragnarok_poster.jpg",  # NOQA
                             "https://www.youtube.com/watch?v=ue80QwXMRHg")
 
 oceans_11 = media.Movie("Ocean's 11",
@@ -67,11 +69,9 @@ holiday = media.Movie("The Holiday",
 
 # array for arguement to be used for the open_movies function
 movies = [star_wars_4, serenity, harry_potter_1, hunger_games, avengers,
-          deadpool,thirteen_thirty, infinity_war, lotr_fellowship,
+          deadpool, thirteen_thirty, infinity_war, lotr_fellowship,
           thor_ragnarok, oceans_11, holiday]
 
 # calls the open_movies function from the fresh_tomatoes file with the movies
 # array as its argument
 fresh_tomatoes.open_movies_page(movies)
-
-                        
